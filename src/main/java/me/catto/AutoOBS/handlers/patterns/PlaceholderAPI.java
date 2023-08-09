@@ -1,4 +1,4 @@
-package me.catto.autogg.handlers.patterns;
+package me.catto.AutoOBS.handlers.patterns;
 
 import java.util.HashMap;
 import java.util.Map;

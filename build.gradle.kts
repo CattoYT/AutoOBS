@@ -25,7 +25,6 @@ configurations.implementation.get().extendsFrom(embed)
 dependencies {
     compileOnly("gg.essential:essential-$platform:2666")
     embed ("io.obs-websocket.community:client:2.0.0")
-    embed("ch.qos.logback:logback-classic:1.1.7")
     embed("gg.essential:loader-launchwrapper:1.1.3")
 }
 

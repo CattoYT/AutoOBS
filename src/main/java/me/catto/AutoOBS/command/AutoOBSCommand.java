@@ -1,11 +1,11 @@
-package me.catto.autogg.command;
+package me.catto.AutoOBS.command;
 
 import gg.essential.api.commands.SubCommand;
-import me.catto.autogg.AutoGG;
+import me.catto.AutoOBS.AutoOBS;
 import gg.essential.api.commands.Command;
 import gg.essential.api.commands.DefaultHandler;
 
-import static me.catto.autogg.utils.ChatUtil.sendLocalMessage;
+import static me.catto.AutoOBS.utils.ChatUtil.sendLocalMessage;
 
 public class AutoOBSCommand extends Command {
     public AutoOBSCommand() {
@@ -20,20 +20,20 @@ public class AutoOBSCommand extends Command {
 
     @SubCommand(value = "connect", description = "Connects to OBS")
     public void connect() {
-        AutoGG.obs.startOBS();
+        AutoOBS.obs.startOBS();
     }
 
     @SubCommand(value = "disconnect", description = "Connects to OBS")
     public void disconnect() {
-        AutoGG.obs.endOBS();
+        AutoOBS.obs.endOBS();
     }
 
     @SubCommand(value = "toggle", description = "Toggles AutoOBS")
     public void toggle() {
-        if(AutoGG.INSTANCE.getAutoGGConfig().getAutoOBS())
-            AutoGG.INSTANCE.getAutoGGConfig().setAutoOBS(false);
+        if(AutoOBS.INSTANCE.getAutoOBSConfig().getAutoOBS())
+            AutoOBS.INSTANCE.getAutoOBSConfig().setAutoOBS(false);
         else {
-            AutoGG.INSTANCE.getAutoGGConfig().setAutoOBS(true);
+            AutoOBS.INSTANCE.getAutoOBSConfig().setAutoOBS(true);
         }
     }
 

@@ -1,8 +1,8 @@
-package me.catto.autogg.tasks.data;
+package me.catto.AutoOBS.tasks.data;
 
-import me.catto.autogg.detectors.IDetector;
-import me.catto.autogg.detectors.branding.ServerBrandingDetector;
-import me.catto.autogg.detectors.ip.ServerIPDetector;
+import me.catto.AutoOBS.detectors.IDetector;
+import me.catto.AutoOBS.detectors.branding.ServerBrandingDetector;
+import me.catto.AutoOBS.detectors.ip.ServerIPDetector;
 
 public enum DetectorHandler {
     SERVER_BRANDING(new ServerBrandingDetector()),

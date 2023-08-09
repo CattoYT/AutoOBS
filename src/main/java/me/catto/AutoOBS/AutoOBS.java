@@ -1,5 +1,5 @@
 /*
- * AutoGG - Automatically say a selectable phrase at the end of a game on supported servers.
+ * AutoOBS - Automatically say a selectable phrase at the end of a game on supported servers.
  * Copyright (C) 2020  Sk1er LLC
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,16 +16,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package me.catto.autogg;
+package me.catto.AutoOBS;
 
-import me.catto.autogg.command.AutoGGCommand;
-import me.catto.autogg.command.AutoOBSCommand;
-import me.catto.autogg.config.AutoGGConfig;
-import me.catto.autogg.handlers.gg.AutoGGHandler;
-import me.catto.autogg.handlers.patterns.PlaceholderAPI;
-import me.catto.autogg.features.OBSImpl;
-import me.catto.autogg.tasks.RetrieveTriggersTask;
-import me.catto.autogg.tasks.data.TriggersSchema;
+import me.catto.AutoOBS.command.AutoOBSCommand;
+import me.catto.AutoOBS.config.AutoOBSConfig;
+import me.catto.AutoOBS.handlers.gg.AutoOBSHandler;
+import me.catto.AutoOBS.handlers.patterns.PlaceholderAPI;
+import me.catto.AutoOBS.features.OBSImpl;
+import me.catto.AutoOBS.tasks.RetrieveTriggersTask;
+import me.catto.AutoOBS.tasks.data.TriggersSchema;
 import gg.essential.api.EssentialAPI;
 import gg.essential.api.utils.JsonHolder;
 import gg.essential.api.utils.Multithreading;
@@ -47,24 +46,24 @@ import java.util.*;
 
 
 /**
- * Contains the main class for AutoGG which handles trigger schema setting/getting and the main initialization code.
+ * Contains the main class for AutoOBS which handles trigger schema setting/getting and the main initialization code.
  *
  * @author ChachyDev
  */
-@Mod(modid = "autogg", name = "AutoOBS", version = "1.0 SNAPSHOT")
-public class AutoGG {
+@Mod(modid = "autoobs", name = "AutoOBS", version = "1.0 SNAPSHOT")
+public class AutoOBS {
 
     @Mod.Instance
-    public static AutoGG INSTANCE;
+    public static AutoOBS INSTANCE;
 
     public static OBSImpl obs = new OBSImpl();
 
     private final String[] primaryGGStrings = {"gg", "GG", "gf", "Good Game", "Good Fight", "Good Round! :D"};
-    private final String[] secondaryGGStrings = {"Have a good day!", "<3", "AutoGG By Sk1er!", "gf", "Good Fight", "Good Round", ":D", "Well played!", "wp"};
+    private final String[] secondaryGGStrings = {"Have a good day!", "<3", "AutoOBS By Sk1er!", "gf", "Good Fight", "Good Round", ":D", "Well played!", "wp"};
     private TriggersSchema triggers;
-    private AutoGGConfig autoGGConfig;
+    private AutoOBSConfig AutoOBSConfig;
     private boolean usingEnglish;
-    public static final Logger logger = LogManager.getLogger("AutoGG");
+    public static final Logger logger = LogManager.getLogger("AutoOBS");
     public static final Minecraft mc = Minecraft.getMinecraft();
 
     @Mod.EventHandler
@@ -76,8 +75,8 @@ public class AutoGG {
 
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event) {
-        autoGGConfig = new AutoGGConfig();
-        autoGGConfig.preload();
+        AutoOBSConfig = new AutoOBSConfig();
+        AutoOBSConfig.preload();
         evalJVMArgs();
         Set<String> joined = new HashSet<>();
         joined.addAll(Arrays.asList(primaryGGStrings));
@@ -88,14 +87,8 @@ public class AutoGG {
         PlaceholderAPI.INSTANCE.registerPlaceHolder("antigg_strings", String.join("|", joined));
 
         Multithreading.runAsync(new RetrieveTriggersTask());
-        MinecraftForge.EVENT_BUS.register(new AutoGGHandler());
-        EssentialAPI.getCommandRegistry().registerCommand(new AutoGGCommand());
-        EssentialAPI.getCommandRegistry().registerCommand(new AutoOBSCommand());
-        // fix settings that were moved to seconds instead of ms
-        // so users aren't waiting 5000 seconds to send GG
-        if (autoGGConfig.getAutoGGDelay() > 5) autoGGConfig.setAutoGGDelay(1);
-        if (autoGGConfig.getSecondaryDelay() > 5) autoGGConfig.setSecondaryDelay(1);
-    }
+        MinecraftForge.EVENT_BUS.register(new AutoOBSHandler());
+        EssentialAPI.getCommandRegistry().registerCommand(new AutoOBSCommand());}
 
     @Mod.EventHandler
     public void loadComplete(FMLLoadCompleteEvent event) {
@@ -110,8 +103,8 @@ public class AutoGG {
 
         if (!usingEnglish) {
             EssentialAPI.getNotifications().push(
-                "AutoGG",
-                "We've detected your Hypixel language isn't set to English! AutoGG will not work on other languages.\n" +
+                "AutoOBS",
+                "We've detected your Hypixel language isn't set to English! AutoOBS will not work on other languages.\n" +
                     "If this is a mistake, feel free to ignore it.", 6
             );
         }
@@ -139,17 +132,10 @@ public class AutoGG {
         this.triggers = triggers;
     }
 
-    public AutoGGConfig getAutoGGConfig() {
-        return autoGGConfig;
+    public AutoOBSConfig getAutoOBSConfig() {
+        return AutoOBSConfig;
     }
-
-    public String[] getPrimaryGGStrings() {
-        return primaryGGStrings;
-    }
-
-    public String[] getSecondaryGGStrings() {
-        return secondaryGGStrings;
-    }
+    
 
     public void evalJVMArgs() {RuntimeMXBean runtimeMxBean = ManagementFactory.getRuntimeMXBean();
         List<String> jvmArguments = runtimeMxBean.getInputArguments();
@@ -168,9 +154,9 @@ public class AutoGG {
 
             // Do something based on the value of the myCustomArg argument
             if (ForceOBSArg) {
-                getAutoGGConfig().setAutoOBS(false);
-                if (AutoGG.obs.obsConnected) {
-                    AutoGG.obs.endOBS();
+                getAutoOBSConfig().setAutoOBS(false);
+                if (AutoOBS.obs.obsConnected) {
+                    AutoOBS.obs.endOBS();
                 }
             }
         }

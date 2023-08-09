@@ -1,4 +1,4 @@
-package me.catto.autogg.utils;
+package me.catto.AutoOBS.utils;
 
 import gg.essential.api.EssentialAPI;
 import gg.essential.universal.ChatColor;

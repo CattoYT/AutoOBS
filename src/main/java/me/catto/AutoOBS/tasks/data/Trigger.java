@@ -1,4 +1,4 @@
-package me.catto.autogg.tasks.data;
+package me.catto.AutoOBS.tasks.data;
 
 /**
  * Data holder for a trigger in the server triggers JsonArray

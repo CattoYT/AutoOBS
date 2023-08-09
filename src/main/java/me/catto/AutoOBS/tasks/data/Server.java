@@ -1,4 +1,4 @@
-package me.catto.autogg.tasks.data;
+package me.catto.AutoOBS.tasks.data;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

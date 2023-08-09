@@ -1,7 +1,7 @@
-package me.catto.autogg.detectors.branding;
+package me.catto.AutoOBS.detectors.branding;
 
-import me.catto.autogg.detectors.IDetector;
-import me.catto.autogg.handlers.patterns.PatternHandler;
+import me.catto.AutoOBS.detectors.IDetector;
+import me.catto.AutoOBS.handlers.patterns.PatternHandler;
 import net.minecraft.client.Minecraft;
 
 public class ServerBrandingDetector implements IDetector {

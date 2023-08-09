@@ -9,7 +9,7 @@ Explore
 @CattoYT
 Sk1erLLC
 /
-AutoGG
+AutoOBS
 Public
 Code
 Issues
@@ -19,7 +19,7 @@ Actions
 Projects
 Security
 Insights
-AutoGG/gradlew.bat
+AutoOBS/gradlew.bat
 
 asbyth Build: Change to Essential
 Latest commit 70a109b on May 23, 2021
@@ -130,4 +130,4 @@ API
 Training
 Blog
 About
-AutoGG/gradlew.bat at master · Sk1erLLC/AutoGG
+AutoOBS/gradlew.bat at master · Sk1erLLC/AutoOBS

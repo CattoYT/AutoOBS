@@ -1,4 +1,4 @@
-package me.catto.autogg.tasks.data;
+package me.catto.AutoOBS.tasks.data;
 
 public enum TriggerType {
     NORMAL(0),

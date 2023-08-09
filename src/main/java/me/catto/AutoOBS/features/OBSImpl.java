@@ -1,6 +1,6 @@
-package me.catto.autogg.features;
+package me.catto.AutoOBS.features;
 import gg.essential.api.EssentialAPI;
-import me.catto.autogg.AutoGG;
+import me.catto.AutoOBS.AutoOBS;
 import io.obswebsocket.community.client.OBSRemoteController;
 
 public class OBSImpl {
@@ -17,12 +17,12 @@ public class OBSImpl {
     public boolean obsConnected;
 
     public void startOBS() {
-        if(AutoGG.INSTANCE.getAutoGGConfig().getAutoOBS()) {
+        if(AutoOBS.INSTANCE.getAutoOBSConfig().getAutoOBS()) {
             try {
                 controller.connect();
             }
             catch(Throwable e) {
-                AutoGG.logger.info("[AutoOBS]: Failed To Connect To OBS!");
+                AutoOBS.logger.info("[AutoOBS]: Failed To Connect To OBS!");
                 EssentialAPI.getNotifications().push(
                         "AutoOBS",
                         "Failed To Connect To OBS Studio!", 6
@@ -31,19 +31,19 @@ public class OBSImpl {
             }
             obsConnected = true;
 
-            AutoGG.logger.info("Connected to OBS");
+            AutoOBS.logger.info("Connected to OBS");
             EssentialAPI.getNotifications().push(
                     "AutoOBS",
                     "Connected To OBS Studio!", 6
             );
-        } else if (!AutoGG.INSTANCE.getAutoGGConfig().getAutoOBS()) {
-            AutoGG.logger.info("[AutoOBS]: Please Toggle AutoOBS To Connect To OBS!");
+        } else if (!AutoOBS.INSTANCE.getAutoOBSConfig().getAutoOBS()) {
+            AutoOBS.logger.info("[AutoOBS]: Please Toggle AutoOBS To Connect To OBS!");
             EssentialAPI.getNotifications().push(
                     "AutoOBS",
                     "Please Toggle AutoOBS To OBS Studio!", 6
             );
         } else {
-            AutoGG.logger.info("[AutoOBS]: Failed To Connect To OBS!");
+            AutoOBS.logger.info("[AutoOBS]: Failed To Connect To OBS!");
             EssentialAPI.getNotifications().push(
                     "AutoOBS",
                     "Failed To Connect To OBS Studio!", 6
@@ -55,14 +55,14 @@ public class OBSImpl {
             controller.disconnect();
         }
         catch(Throwable e) {
-            AutoGG.logger.info("[AutoOBS]: Failed To Disconnect To OBS!");
+            AutoOBS.logger.info("[AutoOBS]: Failed To Disconnect To OBS!");
             EssentialAPI.getNotifications().push(
                     "AutoOBS",
                     "Failed To Disconnect From OBS Studio!", 6
             );
         }
         obsConnected = false;
-        AutoGG.logger.info("[AutoOBS]: Disconnected from OBS!");
+        AutoOBS.logger.info("[AutoOBS]: Disconnected from OBS!");
         EssentialAPI.getNotifications().push(
                 "AutoOBS",
                 "Disconnected from OBS!", 6
@@ -71,19 +71,19 @@ public class OBSImpl {
     }
 
     public void startRecording() {
-        if(AutoGG.INSTANCE.getAutoGGConfig().getAutoOBS()) {
+        if(AutoOBS.INSTANCE.getAutoOBSConfig().getAutoOBS()) {
             controller.startRecord(5);
-            AutoGG.logger.info("Started Recording");
+            AutoOBS.logger.info("Started Recording");
         }
     }
     public void stopRecording() {
-        if(AutoGG.INSTANCE.getAutoGGConfig().getAutoOBS()) {
+        if(AutoOBS.INSTANCE.getAutoOBSConfig().getAutoOBS()) {
             controller.stopRecord(5);
-            if(AutoGG.INSTANCE.getAutoGGConfig().getOBSPause()) {
+            if(AutoOBS.INSTANCE.getAutoOBSConfig().getOBSPause()) {
                 controller.pauseRecord(5);
             }
 
-            AutoGG.logger.info("stopped Recording");
+            AutoOBS.logger.info("stopped Recording");
         }
     }
 
